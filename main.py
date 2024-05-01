@@ -1,3 +1,4 @@
+import requests
 from ldrawfile import LDrawFile
 
 # Open the LiF file
