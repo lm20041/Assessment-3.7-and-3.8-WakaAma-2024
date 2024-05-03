@@ -1,11 +1,8 @@
-import requests
-from ldrawfile import LDrawFile
+lif_file_path ="waka_ama_db/3.7Bresourcefiles/WakaNats2017/001-Heat 1-01.lif"
+keep_lines = []
+with open(lif_file_path, 'r') as f:
+  for line in f:
+    line = line.strip()
+    keep_lines.append(line)
 
-# Open the LiF file
-lif_file_path = "path/to/your/file.lif"
-lif_file = LDrawFile(lif_file_path)
-
-# Access data from the LiF file
-print(lif_file.header)
-for step in lif_file.steps:
-    print(step)
+print('\n'.join(keep_lines))
