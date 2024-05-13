@@ -49,10 +49,10 @@ class Convertor:
     # If users press cross at top, closes help and 'releases' help button
     self.Convertor_box.protocol('WM_DELETE_WINDOW', partial(self.close_Convertor, partner))
     # Create the parent frame
-    self.Convertor_frame = Frame(self.Convertor_box, width=300, height=200, bg=background)
+    self.Convertor_frame = Frame(self.Convertor_box, bg="lightgrey", borderwidth=2, relief="ridge", width=300, height=200)
     print("you pressed help") # <debug>
     self.Convertor_frame.configure(bg="#FFFFFF", borderwidth=5, highlightbackground="#CCCCCC", highlightthickness=10, highlightcolor="#CCCCCC")
-    self.Convertor_frame.grid()
+    self.Convertor_frame.grid(padx=60, pady=10)
     # ***** row0(text) *****
     heading_txt= "Welcome to the Waka Ama Converter"
     self.heading_label = Label(self.Convertor_frame, text=heading_txt, font=bold_font_12, bg=background)
