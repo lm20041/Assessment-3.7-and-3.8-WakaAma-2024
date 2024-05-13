@@ -62,7 +62,14 @@ class Convertor:
     self.instructions_label = Label(self.Convertor_frame, text=instructions_txt, wrap=350, font=text_font_6, bg=background)
     self.instructions_label.grid(row=1, columnspan=2)
     # ***** row2(child frame) *****
+    # Create a child frame for inputs
+    self.child_frame = Frame(self.Convertor_frame, bg=background)
+    self.child_frame.grid(row=2, columnspan=2, pady=10)
     # *** child-row0(text) ***
+    self.text_label = Label(self.child_frame, text="Folder:", font=text_font_6, bg=background).grid(row=0, column=0, sticky=E)
+    self.folder_entry = Entry(self.child_frame)
+    self.folder_entry.grid(row=0, column=1, padx=10, pady=5)
+    
     # *** child-row1(input) ***
     # *** child-row2(text) ***
     # *** child-row3(input) ***
