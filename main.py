@@ -1,9 +1,10 @@
 from tkinter import *
 from tkinter import PhotoImage
+from functools import partial
 
 class program:
   def __init__(self, master):
-    #Var's background, bold_font_12, text_font_6, txt_fg
+    #Var's
     background = "white"
     bold_font_12 = ("Arial", 12, "bold")
     text_font_6 = ("Arial", 10)
@@ -31,7 +32,35 @@ class program:
     self.button = Button(self.parent_frame, text="Start Program", font=bold_font_12, fg=txt_fg, command=self.to_converter)
     self.button.grid(row=3, pady=5)
   def to_converter(self):
-    print("test")
+    Convertor(self)
+
+class Convertor:
+  def __init__(self, partner):
+    # ***** Var's *****
+    background = "white"
+    bold_font_12 = ("Arial", 12, "bold")
+    text_font_6 = ("Arial", 10)
+    txt_fg = "black"
+    # ***** Create frame *****
+    #set up dialogue box
+    self.Convertor_box = Toplevel()
+    # disable help button
+    partner.to_Convertor_button.config(state=DISABLED)
+    # If users press cross at top, closes help and 'releases' help button
+    self.Convertor_box.protocol('WM_DELETE_WINDOW', partial(self.close_Convertor, partner))
+    # Create the parent frame
+    self.Convertor_frame = Frame(self.Convertor_box, width=300, height=200, bg=background)
+    print("you pressed help") # <debug>
+    self.Convertor_frame.grid()
+    # ***** row0(text) *****
+    self.heading_label = Label(self.Convertor_frame, text="Convertor", font=bold_font_12)
+    self.heading_label.grid(row=0)
+    # ***** row1() *****
+    # ***** row2() *****
+  def close_Convertor(self, partner):
+    #put help button back to normal...
+    partner.to_Convertor_button.config(state=NORMAL)
+    self.Convertor_box.destroy()
 
 if __name__ == "__main__":
   root = Tk()
