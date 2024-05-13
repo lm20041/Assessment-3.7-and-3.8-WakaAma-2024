@@ -24,7 +24,7 @@ class program:
     self.image_label.grid(row=1, padx=10, pady=10)
     # ***** row2(text) *****
     pro_text = "This program is created for the wakana culbs to read and write files recorded throughout their races."
-    self.text_label = Label(self.parent_frame, text=pro_text, font=button_font_12, fg=txt_fg, bg=background)
+    self.text_label = Label(self.parent_frame, text=pro_text, wrap=200, font=button_font_12, fg=txt_fg, bg=background)
     self.text_label.grid(row=2, pady=5)
     # ***** row3(button) *****
     self.button = Button(self.parent_frame, text="Start Program", font=button_font_12, fg=txt_fg, command=self.to_converter)
