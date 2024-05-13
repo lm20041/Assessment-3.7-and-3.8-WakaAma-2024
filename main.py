@@ -29,8 +29,8 @@ class program:
     self.text_label = Label(self.parent_frame, text=pro_text, wrap=250, font=text_font_6, fg=txt_fg)
     self.text_label.grid(row=2, pady=5)
     # ***** row3(button) *****
-    self.button = Button(self.parent_frame, text="Start Program", font=bold_font_12, fg=txt_fg, command=self.to_converter)
-    self.button.grid(row=3, pady=5)
+    self.to_converter_button = Button(self.parent_frame, text="Start Program", font=bold_font_12, fg=txt_fg, command=self.to_converter)
+    self.to_converter_button.grid(row=3, pady=5)
   def to_converter(self):
     Convertor(self)
 
@@ -45,7 +45,7 @@ class Convertor:
     #set up dialogue box
     self.Convertor_box = Toplevel()
     # disable help button
-    partner.to_Convertor_button.config(state=DISABLED)
+    partner.to_converter_button.config(state=DISABLED)
     # If users press cross at top, closes help and 'releases' help button
     self.Convertor_box.protocol('WM_DELETE_WINDOW', partial(self.close_Convertor, partner))
     # Create the parent frame
@@ -59,7 +59,7 @@ class Convertor:
     # ***** row2() *****
   def close_Convertor(self, partner):
     #put help button back to normal...
-    partner.to_Convertor_button.config(state=NORMAL)
+    partner.to_converter_button.config(state=NORMAL)
     self.Convertor_box.destroy()
 
 if __name__ == "__main__":
