@@ -43,15 +43,15 @@ class Convertor:
     txt_fg = "black"
     # ***** Create frame *****
     #set up dialogue box
-    self.Convertor_box = Toplevel()
+    self.Convertor_box = Toplevel(master)
     # disable help button
     partner.to_converter_button.config(state=DISABLED)
     # If users press cross at top, closes help and 'releases' help button
     self.Convertor_box.protocol('WM_DELETE_WINDOW', partial(self.close_Convertor, partner))
     # Create the parent frame
-    self.Convertor_frame = Frame(self.Convertor_box, bg="lightgrey", borderwidth=2, relief="ridge", width=300, height=200)
+    self.Convertor_frame = Frame(self.Convertor_box, bg="white", borderwidth=2, relief="ridge", width=300, height=200)
     print("you pressed help") # <debug>
-    self.Convertor_frame.configure(bg="#FFFFFF", borderwidth=5, highlightbackground="#CCCCCC", highlightthickness=10, highlightcolor="#CCCCCC")
+    #self.Convertor_frame.configure(bg="#FFFFFF", borderwidth=5, highlightbackground="#CCCCCC", highlightthickness=10, highlightcolor="#CCCCCC")
     self.Convertor_frame.grid(padx=60, pady=10)
     # ***** row0(text) *****
     heading_txt= "Welcome to the Waka Ama Converter"
