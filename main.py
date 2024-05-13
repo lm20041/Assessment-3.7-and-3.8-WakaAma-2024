@@ -43,7 +43,7 @@ class Convertor:
     txt_fg = "black"
     # ***** Create frame *****
     #set up dialogue box
-    self.Convertor_box = Toplevel(self.master)
+    self.Convertor_box = Toplevel()
     # disable help button
     partner.to_converter_button.config(state=DISABLED)
     # If users press cross at top, closes help and 'releases' help button
@@ -51,14 +51,15 @@ class Convertor:
     # Create the parent frame
     self.Convertor_frame = Frame(self.Convertor_box, width=300, height=200, bg=background)
     print("you pressed help") # <debug>
+    self.Convertor_frame.configure(bg="#FFFFFF", borderwidth=5, highlightbackground="#CCCCCC", highlightthickness=10, highlightcolor="#CCCCCC")
     self.Convertor_frame.grid()
     # ***** row0(text) *****
     heading_txt= "Welcome to the Waka Ama Converter"
-    self.heading_label = Label(self.Convertor_frame, text=heading_txt, font=text_font_6)
+    self.heading_label = Label(self.Convertor_frame, text=heading_txt, font=bold_font_12, bg=background)
     self.heading_label.grid(row=0)
     # ***** row1(text) *****
     instructions_txt= "This program is created for the wakana culbs to read and write files recorded throughout their.\n please enter the folder and file name you would like to convert in the boxs below.\n press check to see if it link's if it does the button will turn into a results button click that to continue"
-    self.instructions_label = Label(self.Convertor_frame, text=instructions_txt, wrap=250, font=text_font_6)
+    self.instructions_label = Label(self.Convertor_frame, text=instructions_txt, wrap=350, font=text_font_6, bg=background)
     self.instructions_label.grid(row=1)
     # ***** row2(child frame) *****
     # *** child-row0(text) ***
@@ -68,7 +69,7 @@ class Convertor:
     # *** child-row4(text) ***
     # *** child-row5(input) ***
     # ***** row3(Error message) *****
-    self.error_message = Label(self.Convertor_frame, text="Please enter a number", font=text_font_6, fg=txt_fg)
+    self.error_message = Label(self.Convertor_frame, text="Please enter a number", font=text_font_6, fg=txt_fg, bg=background)
     self.error_message.grid(row=3, pady=5)
     # ***** row4(button) *****
     self.check_results_button = Button(self.Convertor_frame, text="check", font=bold_font_12, fg=txt_fg, command=self.check_input)
