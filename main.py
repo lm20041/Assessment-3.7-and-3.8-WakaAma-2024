@@ -1,14 +1,34 @@
-import os
-lif_directory = "waka_ama_db/3.7B resource files/WakaNats2017/"
+from tkinter import *
 
-# Get a list of all .lif files in the directory
-lif_files = [file for file in os.listdir(lif_directory) if file.endswith(".lif")]
-keep_lines = []
-for i in range(5):
-  with open(f"{lif_directory}{lif_files[i]}", 'r') as f:
-    print(f"Reading {lif_files[i]}")
-    for line in f:
-      line = line.strip()
-      keep_lines.append(line)
-    print('\n'.join(keep_lines))
-  print('\n\n')
+class program:
+  def __init__(self, master):
+    #Var's
+    background = "white"
+    button_font_12 = ("Arial", 12, "bold")
+    txt_fg = "black"
+    self.master = master #self.Var
+    # ***** Create frame *****
+    # Create the parent frame
+    self.parent_frame = Frame(self.master, bg="lightgrey", borderwidth=2, relief="ridge")
+    self.parent_frame.grid(padx=20, pady=20)
+    # ***** row0(text) *****
+    self.heading_label = Label(self.parent_frame, text="Window-Test1", font=button_font_12, fg=txt_fg, bg=background)
+    self.heading_label.grid(row=0, pady=5)
+    # ***** row1(imag) *****
+
+    # ***** row2(text) *****
+    self.heading_label = Label(self.parent_frame, text="Window-Test1", font=button_font_12, fg=txt_fg, bg=background)
+    self.heading_label.grid(row=0, pady=5)
+    # ***** row3(button) *****
+    self.button = Button(self.parent_frame, text="Start Program", font=button_font_12, fg=txt_fg, command=self.to_converter)
+    self.button.grid(row=3, pady=5)
+  def to_converter(self):
+    print("test")
+
+if __name__ == "__main__":
+  root = Tk()
+  #root.geometry("300x200")
+  root.configure(bg="#FFFFFF", borderwidth=5, highlightbackground="#CCCCCC", highlightthickness=10, highlightcolor="#CCCCCC")
+  root.title("window")
+  app = program(root)
+  root.mainloop()
