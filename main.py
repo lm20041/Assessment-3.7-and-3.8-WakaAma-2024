@@ -32,10 +32,10 @@ class program:
     self.to_converter_button = Button(self.parent_frame, text="Start Program", font=bold_font_12, fg=txt_fg, command=self.to_converter)
     self.to_converter_button.grid(row=3, pady=5)
   def to_converter(self):
-    Convertor(self)
+    Convertor(self, self.master)
 
 class Convertor:
-  def __init__(self, partner):
+  def __init__(self, partner, master):
     # ***** Var's *****
     background = "white"
     bold_font_12 = ("Arial", 12, "bold")
@@ -43,7 +43,7 @@ class Convertor:
     txt_fg = "black"
     # ***** Create frame *****
     #set up dialogue box
-    self.Convertor_box = Toplevel()
+    self.Convertor_box = Toplevel(self.master)
     # disable help button
     partner.to_converter_button.config(state=DISABLED)
     # If users press cross at top, closes help and 'releases' help button
