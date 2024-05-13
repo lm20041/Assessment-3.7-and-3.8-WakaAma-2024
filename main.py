@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import PhotoImage
 
 class program:
   def __init__(self, master):
@@ -15,12 +16,12 @@ class program:
     self.heading_label = Label(self.parent_frame, text="Welcome to Waka Ama", font=button_font_12, fg=txt_fg, bg=background)
     self.heading_label.grid(row=0, pady=5)
     # ***** row1(imag) *****
-    image_path = "ColorCard-image/color_card-back_card.png"
-    image_pit = PhotoImage(file=image_path)
-    self.image_label = Label(self.parent_frame, image=image_pit)
-    self.image_label.image = image_pit
+    image_path = "PhotoImage/culture_of_waka_ama-main-image.png"
+    image = PhotoImage(file=image_path)
+    image = image.subsample(5, 5)
+    self.image_label = Label(self.parent_frame, image=image)
+    self.image_label.image = image
     self.image_label.grid(row=1, padx=10, pady=10)
-    self.create_widgets(num_cards, username)
     # ***** row2(text) *****
     pro_text = "This program is created for the wakana culbs to read and write files recorded throughout their races."
     self.text_label = Label(self.parent_frame, text=pro_text, font=button_font_12, fg=txt_fg, bg=background)
