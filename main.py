@@ -1,4 +1,5 @@
 from tkinter import *
+import re
 
 class Program:
     def __init__(self, master):
@@ -29,8 +30,10 @@ class Program:
         # Retrieve the text from the entry box
         entered_text = self.entry_box.get()
 
-        # Validate the text
-        if entered_text.lower() == "mouse":  # Check if the entered text is "mouse"
+        # Check for numbers, symbols, and spaces
+        if re.search(r'\d', entered_text) or re.search(r'\W', entered_text):
+            self.result_label.config(text="Input contains invalid characters", fg="red")
+        elif entered_text.lower() == "mouse":  # Check if the entered text is "mouse"
             self.result_label.config(text="Valid input", fg="green")
         else:
             self.result_label.config(text="Invalid input", fg="red")
