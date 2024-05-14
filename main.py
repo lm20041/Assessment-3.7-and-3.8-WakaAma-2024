@@ -15,20 +15,28 @@ class Program:
         self.parent_frame.grid(padx=60, pady=10)
 
         # Add an entry box
-        self.entry_box = Entry(self.parent_frame, font=text_font_6)
-        self.entry_box.grid(row=0, column=0, pady=5, columnspan=2)
+        self.entry_box1 = Entry(self.parent_frame, font=text_font_6)
+        self.entry_box1.grid(row=0, column=0, pady=5, columnspan=2)
+        # Add an entry box 2
+        self.entry_box2 = Entry(self.parent_frame, font=text_font_6)
+        self.entry_box2.grid(row=1, column=0, pady=5, columnspan=2)
+        # Add an entry box 3
+        self.entry_box3 = Entry(self.parent_frame, font=text_font_6)
+        self.entry_box3.grid(row=2, column=0, pady=5, columnspan=2)
 
         # Add a button to validate the text
         self.validate_button = Button(self.parent_frame, text="Validate", font=bold_font_12, fg=txt_fg, bg="#CCCCCC", command=self.validate_text)
-        self.validate_button.grid(row=1, column=0, pady=5)
+        self.validate_button.grid(row=3, column=0, pady=5)
 
         # Add a label to display validation result
         self.result_label = Label(self.parent_frame, text="", font=text_font_6, fg=txt_fg, bg=background)
-        self.result_label.grid(row=2, column=0, pady=5, columnspan=2)
+        self.result_label.grid(row=4, column=0, pady=5, columnspan=2)
 
     def validate_text(self):
         # Retrieve the text from the entry box
-        entered_text = self.entry_box.get()
+        for i in range(3):
+            entry_box_num = 'self.entry_box'[i]
+            entered_text = entry_box_num.get()
 
         # Check for numbers, symbols, and spaces
         if re.search(r'\d', entered_text) or re.search(r'\W', entered_text):
