@@ -65,16 +65,18 @@ class Convertor:
     # Create a child frame for inputs
     self.child_frame = Frame(self.Convertor_frame, bg=background)
     self.child_frame.grid(row=2, columnspan=2, pady=10)
-    # *** child-row0(text) ***
-    self.text_label = Label(self.child_frame, text="Folder:", font=text_font_6, bg=background).grid(row=0, column=0, sticky=E)
+    # *** child-row0(Entry) ***
+    self.folder_label = Label(self.child_frame, text="Folder:", font=text_font_6, bg=background).grid(row=0, column=0, sticky=E)
     self.folder_entry = Entry(self.child_frame)
     self.folder_entry.grid(row=0, column=1, padx=10, pady=5)
-    
-    # *** child-row1(input) ***
-    # *** child-row2(text) ***
-    # *** child-row3(input) ***
-    # *** child-row4(text) ***
-    # *** child-row5(input) ***
+    # *** child-row1(Entry) ***
+    self.file_label = Label(self.child_frame, text="File:", font=text_font_6, bg=background).grid(row=1, column=0, sticky=E)
+    self.file_entry = Entry(self.child_frame)
+    self.file_entry.grid(row=1, column=1, padx=10, pady=5)
+    # *** child-row2(Entry) ***
+    self.point_label = Label(self.child_frame, text="point:", font=text_font_6, bg=background).grid(row=2, column=0, sticky=E)
+    self.point_entry = Entry(self.child_frame)
+    self.point_entry.grid(row=2, column=1, padx=10, pady=5)
     # ***** row3(Error message) *****
     self.error_message = Label(self.Convertor_frame, text="Please enter a number", font=text_font_6, fg="red", bg=background)
     self.error_message.grid(row=3, columnspan=2, pady=5)
