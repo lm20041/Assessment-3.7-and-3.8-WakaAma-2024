@@ -41,12 +41,15 @@ class Program:
             if re.search(r'\d', entered_text) or re.search(r'\W', entered_text):
                 self.result_label.config(text="Input contains invalid characters", fg="red")
                 all_valid = False
+                break
             elif entered_text.lower() == "mouse":  # Check if the entered text is "mouse"
-                self.result_label.config(text="Valid input", fg="green")
-                
+                continue
             else:
                 self.result_label.config(text="Invalid input", fg="red")
                 all_valid = False
+                break
+        if all_valid:
+            self.result_label.config(text="All inputs are valid", fg="green")
 
 if __name__ == "__main__":
     root = Tk()
