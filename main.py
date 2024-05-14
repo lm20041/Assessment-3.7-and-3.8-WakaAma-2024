@@ -14,15 +14,12 @@ class Program:
         self.parent_frame = Frame(self.master, bg="lightgrey", borderwidth=2, relief="ridge")
         self.parent_frame.grid(padx=60, pady=10)
 
-        # Add an entry box
-        self.entry_box1 = Entry(self.parent_frame, font=text_font_6)
-        self.entry_box1.grid(row=0, column=0, pady=5, columnspan=2)
-        # Add an entry box 2
-        self.entry_box2 = Entry(self.parent_frame, font=text_font_6)
-        self.entry_box2.grid(row=1, column=0, pady=5, columnspan=2)
-        # Add an entry box 3
-        self.entry_box3 = Entry(self.parent_frame, font=text_font_6)
-        self.entry_box3.grid(row=2, column=0, pady=5, columnspan=2)
+        # Add an entry boxs
+        self.entry_boxes = []
+        for i in range(3):
+            entry_box = Entry(self.parent_frame, font=text_font_6)
+            entry_box.grid(row=i, column=0, pady=5, columnspan=2)
+            self.entry_boxes.append(entry_box)
 
         # Add a button to validate the text
         self.validate_button = Button(self.parent_frame, text="Validate", font=bold_font_12, fg=txt_fg, bg="#CCCCCC", command=self.validate_text)
@@ -33,18 +30,23 @@ class Program:
         self.result_label.grid(row=4, column=0, pady=5, columnspan=2)
 
     def validate_text(self):
-        # Retrieve the text from the entry box
-        for i in range(3):
-            entry_box_num = 'self.entry_box'[i]
-            entered_text = entry_box_num.get()
+        # Clear the previous result
+        self.result_label.config(text="", fg="black")
 
-        # Check for numbers, symbols, and spaces
-        if re.search(r'\d', entered_text) or re.search(r'\W', entered_text):
-            self.result_label.config(text="Input contains invalid characters", fg="red")
-        elif entered_text.lower() == "mouse":  # Check if the entered text is "mouse"
-            self.result_label.config(text="Valid input", fg="green")
-        else:
-            self.result_label.config(text="Invalid input", fg="red")
+        all_valid = True
+        for entry_box in self.entry_boxes:
+            entered_text = entry_box.get()
+
+            # Check for numbers, symbols, and spaces
+            if re.search(r'\d', entered_text) or re.search(r'\W', entered_text):
+                self.result_label.config(text="Input contains invalid characters", fg="red")
+                all_valid = False
+            elif entered_text.lower() == "mouse":  # Check if the entered text is "mouse"
+                self.result_label.config(text="Valid input", fg="green")
+                
+            else:
+                self.result_label.config(text="Invalid input", fg="red")
+                all_valid = False
 
 if __name__ == "__main__":
     root = Tk()
