@@ -29,7 +29,7 @@ class program:
     self.text_label = Label(self.parent_frame, text=pro_text, wrap=250, font=text_font_6, fg=txt_fg)
     self.text_label.grid(row=2, pady=5)
     # ***** row3(button) *****
-    self.to_converter_button = Button(self.parent_frame, text="Start Program", font=bold_font_12, fg=txt_fg, command=self.to_converter)
+    self.to_converter_button = Button(self.parent_frame, text="Start Program", font=bold_font_12, fg="white", bg="#004C99", command=self.to_converter)
     self.to_converter_button.grid(row=3, pady=5)
   def to_converter(self):
     Convertor(self, self.master)
@@ -76,12 +76,12 @@ class Convertor:
     # *** child-row4(text) ***
     # *** child-row5(input) ***
     # ***** row3(Error message) *****
-    self.error_message = Label(self.Convertor_frame, text="Please enter a number", font=text_font_6, fg=txt_fg, bg=background)
+    self.error_message = Label(self.Convertor_frame, text="Please enter a number", font=text_font_6, fg="red", bg=background)
     self.error_message.grid(row=3, columnspan=2, pady=5)
     # ***** row4(button) *****
-    self.check_results_button = Button(self.Convertor_frame, text="check", font=bold_font_12, fg=txt_fg, command=self.check_input)
+    self.check_results_button = Button(self.Convertor_frame, text="check", font=bold_font_12, fg=txt_fg, bg="#004C99", command=self.check_input)
     self.check_results_button.grid(row=4, column=0, pady=5)
-    self.help_button = Button(self.Convertor_frame, text="Help", font=bold_font_12, fg=txt_fg, command=self.to_help)
+    self.help_button = Button(self.Convertor_frame, text="Help", font=bold_font_12, fg=txt_fg, bg="#CC6600", command=self.to_help)
     self.help_button.grid(row=4, column=1, pady=5)
   
   def check_input(self):
