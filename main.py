@@ -44,29 +44,30 @@ class Program:
 
         for i, entry_box in enumerate(self.entry_boxes):
             entered_text = entry_box.get()
-            # Check for numbers, symbols, and spaces
-            if re.search(r'\d', entered_text) or re.search(r'\W', entered_text):
-                self.result_label.config(text="Input contains invalid characters", fg="red")
-                all_valid = False
-                break
-            else:
-                if i == 0:
-                    folder = entered_text
-                elif i == 1:
-                    search_term = entered_text
-                elif i == 2:
-                    points = entered_text
+            if i == 1:
+                folder = entered_text
+            elif i == 2:
+                search_term = entered_text
+            elif i == 3:
+                points = entered_text
 
         if all_valid:
             self.result_label.config(text="All inputs are valid", fg="green")
             self.process_files(folder, search_term, points)
-    def process_files(self, folder, search_term, points):
-        # List all .lif files in the directory that match the file name
-        lif_files = [f for f in os.listdir(folder) if f.endswith(".lif") and search_term in f]
     
-        # Print the names of the matching .lif files
-        for lif_file in lif_files:
-            print(lif_file)
+    def process_files(self, folder, search_term, points):
+            try:
+                # List all .lif files in the directory that match the file name
+                lif_files = [f for f in os.listdir(folder) if f.endswith(".lif") and search_term in f]
+
+                # Print the names of the matching .lif files
+                for lif_file in lif_files:
+                    print(lif_file)
+            except FileNotFoundError:
+                self.result_label.config(text="Folder not found", fg="red")
+            except Exception as e:
+                self.result_label.config(text=f"An error occurred: {e}", fg="red")
+
 
 if __name__ == "__main__":
     root = Tk()
