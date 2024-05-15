@@ -4,74 +4,70 @@ import os
 
 class Program:
     def __init__(self, master):
-        # Var's
+        self.master = master
+        self.master.title("Validation Example")
+        self.master.configure(bg="#FFFFFF", borderwidth=5, highlightbackground="#CCCCCC", highlightthickness=10, highlightcolor="#CCCCCC")
+
+        self.setup_gui()
+
+    def setup_gui(self):
         background = "white"
         bold_font_12 = ("Arial", 12, "bold")
         text_font_6 = ("Arial", 10)
         txt_fg = "black"
-        self.master = master  # self.Var
 
         # Create the parent frame
         self.parent_frame = Frame(self.master, bg="lightgrey", borderwidth=2, relief="ridge")
         self.parent_frame.grid(padx=60, pady=10)
 
-        # *** child-row1(Entry) ***
-        # Add an entry boxs
+        # Entry labels and boxes
+        entry_labels = ["Folder", "File", "Points"]
         self.entry_boxes = []
-        entry_name = ["fouder", "file", "points"]
-        for i in range(3):
-            self.entry_label = Label(self.parent_frame, text=entry_name[i], font=text_font_6, bg=background).grid(row=i, column=0, sticky=E)
+
+        for i, label in enumerate(entry_labels):
+            Label(self.parent_frame, text=label, font=text_font_6, bg=background).grid(row=i, column=0, sticky=E)
             entry_box = Entry(self.parent_frame, font=text_font_6)
             entry_box.grid(row=i, column=1, pady=5)
             self.entry_boxes.append(entry_box)
 
-        # Add a button to validate the text
+        # Validate button
         self.validate_button = Button(self.parent_frame, text="Validate", font=bold_font_12, fg=txt_fg, bg="#CCCCCC", command=self.validate_text)
         self.validate_button.grid(row=3, columnspan=2, pady=5)
 
-        # Add a label to display validation result
+        # Result label
         self.result_label = Label(self.parent_frame, text="", font=text_font_6, fg=txt_fg, bg=background)
-        self.result_label.grid(row=4,columnspan=2, pady=5)
+        self.result_label.grid(row=4, columnspan=2, pady=5)
 
     def validate_text(self):
-        # Clear the previous result
         self.result_label.config(text="", fg="black")
-        #Var's
-        all_valid = True
-        folder  = ""
-        search_term = ""
-        points = ""
 
-        for i, entry_box in enumerate(self.entry_boxes):
-            entered_text = entry_box.get()
-            if i == 1:
-                folder = entered_text
-            elif i == 2:
-                search_term = entered_text
-            elif i == 3:
-                points = entered_text
+        folder = self.entry_boxes[0].get()
+        search_term = self.entry_boxes[1].get()
+        points = self.entry_boxes[2].get()
 
-        if all_valid:
-            self.result_label.config(text="All inputs are valid", fg="green")
-            self.process_files(folder, search_term, points)
-    
+        if not folder or not search_term or not points:
+            self.result_label.config(text="All fields are required", fg="red")
+            return
+
+        if re.search(r'\d', search_term) or re.search(r'\W', search_term):
+            self.result_label.config(text="File search term contains invalid characters", fg="red")
+            return
+
+        self.process_files(folder, search_term, points)
+
     def process_files(self, folder, search_term, points):
-            try:
-                # List all .lif files in the directory that match the file name
-                lif_files = [f for f in os.listdir(folder) if f.endswith(".lif") and search_term in f]
-
-                # Print the names of the matching .lif files
-                for lif_file in lif_files:
-                    print(lif_file)
-            except FileNotFoundError:
-                self.result_label.config(text="Folder not found", fg="red")
-            except Exception as e:
-                self.result_label.config(text=f"An error occurred: {e}", fg="red")
-
+        try:
+            lif_files = [f for f in os.listdir(folder) if f.endswith(".lif") and search_term in f]
+            if lif_files:
+                self.result_label.config(text="Found files:\n" + "\n".join(lif_files), fg="green")
+            else:
+                self.result_label.config(text="No matching files found", fg="red")
+        except FileNotFoundError:
+            self.result_label.config(text="Folder not found", fg="red")
+        except Exception as e:
+            self.result_label.config(text=f"An error occurred: {e}", fg="red")
 
 if __name__ == "__main__":
     root = Tk()
-    root.configure(bg="#FFFFFF", borderwidth=5, highlightbackground="#CCCCCC", highlightthickness=10, highlightcolor="#CCCCCC")
-    root.title("Validation Example")
     app = Program(root)
     root.mainloop()
